@@ -72,3 +72,12 @@ export PATH="/usr/local/bin:/usr/local/heroku/bin:/Users/yuki3738/.rbenv/shims:/
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
+#
+autoload colors
+colors
+
+PROMPT="
+%{${fg[yellow]}%}%~%{${reset_color}%} 
+[%n]$ "
+
+PROMPT2='[%n]> ' 

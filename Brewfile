@@ -41,6 +41,7 @@ cask install --force sublime-text3
 cask install --force rubymine
 
 ## Utils
+install the_silver_searcher
 cask install --force google-japanese-ime
 cask install --force dropbox
 

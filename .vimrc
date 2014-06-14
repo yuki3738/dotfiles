@@ -9,7 +9,8 @@ call neobundle#rc(expand('~/.vim/bundle/'))
 "Let NeoBundle manage NeoBundle
 NeoBundleFetch 'Shougo/neobundle.vim'
 " Recommended to install
-" After install, turn shell ~/.vim/bundle/vimproc, (n,g)make -f your_machines_makefile
+" After install, turn shell ~/.vim/bundle/vimroc,rkdown'
+"  Bundle 'suan/vim-instant-markdown'(n,g)make -f your_machines_makefile
 NeoBundle 'Shougo/vimproc'
 " My Bundles here:
 NeoBundle 'scrooloose/nerdtree'
@@ -50,13 +51,6 @@ let g:syntastic_mode_map = { 'mode': 'passive',
 let g:syntastic_ruby_checkers = ['rubocop']
 
 "-----------------------------------
-"https://github.com/cohama/vim-smartinput-endwise
-NeoBundle "kana/vim-smartinput"
-NeoBundle "cohama/vim-smartinput-endwise"
-
-call smartinput_endwise#define_default_rules()
-
-"-----------------------------------
 "http://blogs.yahoo.co.jp/momongamemonga/39861534.html
 set backspace=indent,eol,start
 
@@ -84,3 +78,56 @@ autocmd vimenter * if !argc() | NERDTree | endif
 "Default: 0.
 "let g:NERDTreeShowHidden=0
 let g:NERDTreeShowHidden=1
+
+"カーソルラインをハイライト表示する。
+let g:NERDTreeHighlightCursorline=1
+
+"ブックマークや、ヘルプのショートカットをメニューに表示する。
+let g:NERDTreeMinimalUI=1
+"-----------------------------------
+"http://blog.remora.cx/2010/12/vim-ref-with-unite.html
+NeoBundle 'Shougo/unite.vim'
+
+" 入力モードで開始する
+let g:unite_enable_start_insert=1
+" バッファ一覧
+noremap <C-P> :Unite buffer<CR>
+" ファイル一覧
+noremap <C-N> :Unite -buffer-name=file file<CR>
+" 最近使ったファイルの一覧
+noremap <C-Z> :Unite file_mru<CR>
+ 
+" ウィンドウを分割して開く
+au FileType unite nnoremap <silent> <buffer> <expr> <C-J> unite#do_action('split')
+au FileType unite inoremap <silent> <buffer> <expr> <C-J> unite#do_action('split')
+" ウィンドウを縦に分割して開く
+au FileType unite nnoremap <silent> <buffer> <expr> <C-K> unite#do_action('vsplit')
+au FileType unite inoremap <silent> <buffer> <expr> <C-K> unite#do_action('vsplit')
+" ESCキーを2回押すと終了する
+au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
+au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
+" 初期設定関数を起動する
+au FileType unite call s:unite_my_settings()
+    function! s:unite_my_settings()
+    " Overwrite settings.
+endfunction
+ 
+" 様々なショートカット
+call unite#custom#substitute('file', '\$\w\+', '\=eval(submatch(0))', 200)
+call unite#custom#substitute('file', '^@@', '\=fnamemodify(expand("#"), ":p:h")."/"', 2)
+call unite#custom#substitute('file', '^@', '\=getcwd()."/*"', 1)
+call unite#custom#substitute('file', '^;r', '\=$VIMRUNTIME."/"')
+call unite#custom#substitute('file', '^\~', escape($HOME, '\'), -2)
+call unite#custom#substitute('file', '\\\@<! ', '\\ ', -20)
+call unite#custom#substitute('file', '\\ \@!', '/', -30)
+ 
+if has('win32') || has('win64')
+    call unite#custom#substitute('file', '^;p', 'C:/Program Files/')
+    call unite#custom#substitute('file', '^;v', '~/vimfiles/')
+else
+    call unite#custom#substitute('file', '^;v', '~/.vim/')
+endif
+"-----------------------------------
+"http://kaworu.jpn.org/kaworu/2010-11-20-1.php
+set hlsearch
+
