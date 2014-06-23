@@ -5,7 +5,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="dpoggi"
+ZSH_THEME="avit"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -54,7 +54,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="/usr/local/bin:/usr/local/heroku/bin:/Users/yuki3738/.rbenv/shims:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/git/bin:/usr/local/mysql/bin:/Applications/Sublime Text.app/Contents/SharedSupport/bin"
+export PATH="/usr/local/bin:/Users/yuki3738/.rbenv/shims:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -72,12 +72,3 @@ export PATH="/usr/local/bin:/usr/local/heroku/bin:/Users/yuki3738/.rbenv/shims:/
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
-#
-autoload colors
-colors
-
-PROMPT="
-%{${fg[yellow]}%}%~%{${reset_color}%} 
-[%n]$ "
-
-PROMPT2='[%n]> ' 
