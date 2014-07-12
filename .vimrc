@@ -11,24 +11,46 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " Recommended to install
 " After install, turn shell ~/.vim/bundle/vimroc,rkdown'
 "  Bundle 'suan/vim-instant-markdown'(n,g)make -f your_machines_makefile
-NeoBundle 'Shougo/vimproc'
 " My Bundles here:
 NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'tpope/vim-rails'
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neocomplete'
+NeoBundle 'Shougo/neosnippet-snippets'
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'Shougo/vimproc', {
+      \ 'build' : {
+      \     'windows' : 'tools\\update-dll-mingw',
+      \     'cygwin' : 'make -f make_cygwin.mak',
+      \     'mac' : 'make -f make_mac.mak',
+      \     'unix' : 'make -f make_unix.mak',
+      \    },
+      \ }
+
+
 filetype plugin indent on     " Required!
 " Installation check.
 NeoBundleCheck
 autocmd vimenter * NERDTree
 syntax on
 set number
-
 "-----------------------------------
+
+"neocomplete--------------
+let g:neocomplete#enable_at_startup = 1
+if !exists('g:neocomplete#force_omni_input_patterns')
+    let g:neocomplete#force_omni_input_patterns = {}
+  endif
+  let g:neocomplete#force_omni_input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
+"--------------------------
 "http://qiita.com/hokusyu/items/52f15bbf349190e98686
 
 "新しい行のインデントを現在行と同じにする
 set autoindent
 
 "クリップボードをMacと連携する
-set clipboard=unnamed,autoselect
+set clipboard+=unnamed,autoselect
 
 "タブの代わりに空白文字を指定する
 set expandtab
@@ -43,16 +65,14 @@ set smarttab
 "オートインデント時にインデントする文字数
 set shiftwidth=2
 
-"-----------------------------------
+"http://blogs.yahoo.co.jp/momongamemonga/39861534.html
+set backspace=indent,eol,start
+
 "http://qiita.com/yuku_t/items/0ac33cea18e10f14e185
-NeoBundle 'scrooloose/syntastic'
+"'scrooloose/syntastic'--------------------
 let g:syntastic_mode_map = { 'mode': 'passive',
             \ 'active_filetypes': ['ruby'] }
 let g:syntastic_ruby_checkers = ['rubocop']
-
-"-----------------------------------
-"http://blogs.yahoo.co.jp/momongamemonga/39861534.html
-set backspace=indent,eol,start
 
 "-----------------------------------
 "http://blog.livedoor.jp/kumonopanya/archives/51048805.html
@@ -86,7 +106,7 @@ let g:NERDTreeHighlightCursorline=1
 let g:NERDTreeMinimalUI=1
 "-----------------------------------
 "http://blog.remora.cx/2010/12/vim-ref-with-unite.html
-NeoBundle 'Shougo/unite.vim'
+"'Shougo/unite.vim'
 
 " 入力モードで開始する
 let g:unite_enable_start_insert=1
@@ -130,4 +150,16 @@ endif
 "-----------------------------------
 "http://kaworu.jpn.org/kaworu/2010-11-20-1.php
 set hlsearch
+
+"-----------------------------------
+set binary noeol
+
+"set whichwrap=b,s,h,l,<,>,[,]
+
+set expandtab
+
+" ファイルが更新されたら自動的にリロード
+set autoread 
+
+"-----------------------------------
 

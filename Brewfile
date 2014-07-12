@@ -35,6 +35,7 @@ install mysql
 install sqlite
 
 ## Editor
+install vim
 cask install --force sublime-text3
 
 ## IDE

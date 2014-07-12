@@ -72,3 +72,7 @@ export PATH="/usr/local/bin:/Users/yuki3738/.rbenv/shims:/usr/bin:/bin:/usr/sbin
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
+
+function agvim () {
+  vim $(ag $@ | peco --query "$LBUFFER" | awk -F : '{print "-c " $2 " " $1}')
+}
