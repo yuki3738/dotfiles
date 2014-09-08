@@ -26,6 +26,9 @@ NeoBundle 'Shougo/neocomplete'
 NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'terryma/vim-multiple-cursors'
+NeoBundle 'nathanaelkane/vim-indent-guides'
+NeoBundle 'vim-scripts/AnsiEsc.vim' " ログファイルを色づけしてくれる
+NeoBundle 'bronson/vim-trailing-whitespace' " 行末の半角スペースを可視化
 NeoBundle 'Shougo/vimproc', {
       \ 'build' : {
       \     'windows' : 'tools\\update-dll-mingw',
@@ -39,16 +42,6 @@ filetype plugin indent on     " Required!
 " Installation check.
 NeoBundleCheck
 autocmd vimenter * NERDTree
-
-
-""""""""""""""""""""""""""""""
-"neocompleteの設定
-""""""""""""""""""""""""""""""
-let g:neocomplete#enable_at_startup = 1
-if !exists('g:neocomplete#force_omni_input_patterns')
-    let g:neocomplete#force_omni_input_patterns = {}
-  endif
-  let g:neocomplete#force_omni_input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 
 
 """"""""""""""""""""""""""""""
@@ -111,6 +104,16 @@ set autoread
 
 
 """"""""""""""""""""""""""""""
+"neocompleteの設定
+""""""""""""""""""""""""""""""
+let g:neocomplete#enable_at_startup = 1
+if !exists('g:neocomplete#force_omni_input_patterns')
+    let g:neocomplete#force_omni_input_patterns = {}
+  endif
+  let g:neocomplete#force_omni_input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
+
+
+""""""""""""""""""""""""""""""
 "scrooloose/syntasticの設定
 "http://qiita.com/yuku_t/items/0ac33cea18e10f14e185
 """"""""""""""""""""""""""""""
@@ -151,6 +154,14 @@ let g:NERDTreeHighlightCursorline=1
 
 "ブックマークや、ヘルプのショートカットをメニューに表示する。
 let g:NERDTreeMinimalUI=1
+
+
+""""""""""""""""""""""""""""""
+" vim-indent-guidesの設定
+" vimを立ち上げたときに、自動的にvim-indent-guidesをオンにする
+" (微妙だったのでコメントアウト)
+""""""""""""""""""""""""""""""
+"let g:indent_guides_enable_on_vim_startup = 1
 
 
 """"""""""""""""""""""""""""""
@@ -219,10 +230,11 @@ endif
 
 """"""""""""""""""""""""""""""
 " 自動的に閉じ括弧を入力
+" (20140908 微妙だったのでコメントアウト)
 """"""""""""""""""""""""""""""
-imap { {}<LEFT>
-imap [ []<LEFT>
-imap ( ()<LEFT>
+"imap { {}<LEFT>
+"imap [ []<LEFT>
+"imap ( ()<LEFT>
 
 
 """"""""""""""""""""""""""""""
