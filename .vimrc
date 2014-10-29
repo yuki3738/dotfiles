@@ -159,10 +159,9 @@ let g:NERDTreeMinimalUI=1
 """"""""""""""""""""""""""""""
 " vim-indent-guidesの設定
 " vimを立ち上げたときに、自動的にvim-indent-guidesをオンにする
-" (微妙だったのでコメントアウト)
+" (今のitermのテーマに合わなかった。)
 """"""""""""""""""""""""""""""
 "let g:indent_guides_enable_on_vim_startup = 1
-
 
 """"""""""""""""""""""""""""""
 " 全角スペースの表示
