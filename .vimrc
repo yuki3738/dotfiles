@@ -29,6 +29,9 @@ NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'vim-scripts/AnsiEsc.vim' " ログファイルを色づけしてくれる
 NeoBundle 'bronson/vim-trailing-whitespace' " 行末の半角スペースを可視化
+NeoBundle 'thinca/vim-quickrun'
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'slim-template/vim-slim'
 NeoBundle 'Shougo/vimproc', {
       \ 'build' : {
       \     'windows' : 'tools\\update-dll-mingw',
@@ -100,7 +103,7 @@ set binary noeol
 set expandtab
 
 " ファイルが更新されたら自動的にリロード
-set autoread 
+set autoread
 
 
 """"""""""""""""""""""""""""""
@@ -155,6 +158,10 @@ let g:NERDTreeHighlightCursorline=1
 "ブックマークや、ヘルプのショートカットをメニューに表示する。
 let g:NERDTreeMinimalUI=1
 
+""""""""""""""""""""""""""""""
+" syntasticの設定
+"""""""""""""""""""""""""""""
+let g:syntastic_ruby_checkers = ['rubocop']
 
 """"""""""""""""""""""""""""""
 " vim-indent-guidesの設定
@@ -234,7 +241,6 @@ endif
 "imap { {}<LEFT>
 "imap [ []<LEFT>
 "imap ( ()<LEFT>
-
 
 """"""""""""""""""""""""""""""
 " filetypeの自動検出(最後の方に書いた方がいいらしい)
