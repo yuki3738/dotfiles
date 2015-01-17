@@ -32,6 +32,7 @@ NeoBundle 'bronson/vim-trailing-whitespace' " 行末の半角スペースを可�
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'slim-template/vim-slim'
+NeoBundle 'mattn/benchvimrc-vim'
 NeoBundle 'Shougo/vimproc', {
       \ 'build' : {
       \     'windows' : 'tools\\update-dll-mingw',
@@ -158,7 +159,12 @@ let g:NERDTreeHighlightCursorline=1
 "ブックマークや、ヘルプのショートカットをメニューに表示する。
 let g:NERDTreeMinimalUI=1
 
-""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""
+" Quickrunの設定
+"""""""""""""""""""""""""""""
+let g:quickrun_config = {'*': {'hook/time/enable': '1'},}
+
+"""""""""""""""""""""""""""""
 " syntasticの設定
 """""""""""""""""""""""""""""
 let g:syntastic_ruby_checkers = ['rubocop']
