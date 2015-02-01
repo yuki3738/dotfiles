@@ -36,23 +36,17 @@ install sqlite
 
 ## Editor
 install vim
-cask install --force sublime-text3
 
 ## IDE
-cask install --force rubymine
 
 ## Utils
 install the_silver_searcher
-cask install --force google-japanese-ime
-cask install --force dropbox
 
 ########################
 # Install Applications #
 ########################
 
 ## Browser
-cask install --force google-chrome
-cask install --force firefox
 
 # Remove out	dated versions
 cleanup
