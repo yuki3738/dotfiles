@@ -159,6 +159,8 @@ let g:NERDTreeHighlightCursorline=1
 "ブックマークや、ヘルプのショートカットをメニューに表示する。
 let g:NERDTreeMinimalUI=1
 
+"nerdtreeだけになったらvimを終了する。"
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 """""""""""""""""""""""""""""
 " Quickrunの設定
 """""""""""""""""""""""""""""
