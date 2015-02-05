@@ -73,23 +73,3 @@ export PATH="/Users/yuki3738/.nodebrew/current/bin:/Users/yuki3738/.rbenv/shims:
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
-# agvimの設定
-function agvim () {
-  vim $(ag $@ | peco --query "$LBUFFER" | awk -F : '{print "-c " $2 " " $1}')
-}
-
-# rbenvの設定
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-
-# zの設定
-. /usr/local/etc/profile.d/z.sh
-function _Z_precmd {
-  z --add "$(pwd -P)" 61 }
-precmd_functions=($precmd_functions _Z_precmd)
-
-# gimの設定
-function gim() {
-  local file=`git ls-files --cached | peco`
-  [ -n "$file" ] && vim $file
-}
