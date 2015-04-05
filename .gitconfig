@@ -1,0 +1,14 @@
+[user]
+	name = yuki3738
+	email = y.minamiya@gmail.com
+[alias]
+	co = checkout
+	lg = log --graph --pretty=oneline --decorate --date=short --abbrev-commit --branches
+  # ログをtreeで表示(簡易tig) via http://webtech-walker.com/archive/2010/03/04034601.html
+[color]
+	ui = auto
+[core]
+  editor = vim
+  excludesfile = ~/.gitignore
+[ghq]
+	root = ~/src
