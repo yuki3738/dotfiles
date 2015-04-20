@@ -21,6 +21,6 @@ bindkey '^r' peco-select-history
 # eでghqで入れたリポジトリをpeco検索する設定
 function peco-src() {
   local dir=$(ghq list | peco)
-  [[ -n ${dir} ]] && cd "${HOME}/.ghq/${dir}"
+  [[ -n ${dir} ]] && cd "${HOME}/src/${dir}"
 }
 alias e=peco-src
