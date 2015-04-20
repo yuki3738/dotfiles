@@ -4,3 +4,5 @@
 .DS_Store
 *~
 *.un~
+.bundle
+dump.rdb
