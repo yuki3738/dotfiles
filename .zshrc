@@ -72,3 +72,13 @@ export PATH="${GOPATH}/bin:/Users/yuki3738/.nodebrew/current/bin:/Users/yuki3738
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
+
+# For nodenv
+# ---------------------------------------------------**
+if [ -d "$HOME/.nodenv" ]; then
+  export PATH="$HOME/.nodenv/bin:$PATH"
+  export PATH="$HOME/.nodenv/shims:$PATH"
+  eval "$(nodenv init -)"
+else
+  warn "  x [Warning] nodenv is not installed"
+fi
