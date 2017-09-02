@@ -1,3 +1,6 @@
+setopt auto_cd
+function chpwd() { ls }
+
 # agvimの設定
 function agvim () {
   vim $(ag $@ | peco --query "$LBUFFER" | awk -F : '{print "-c " $2 " " $1}')
