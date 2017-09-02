@@ -72,3 +72,5 @@ export PATH="${GOPATH}/bin:/Users/yuki3738/.nodebrew/current/bin:/Users/yuki3738
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
+export PATH="$HOME/.anyenv/bin:$PATH"
+eval "$(anyenv init -)"
