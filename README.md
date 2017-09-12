@@ -1,5 +1,11 @@
-dotfiles
-========
-素人が模索しているものなので参考にしないでください。
+# Dotfiles
 
-参考:http://qiita.com/himinato/items/7f5461814e8ed8916870
+## Deploy
+```
+$ ~/dotfiles/dotfilesLink.sh
+```
+
+## Initialize
+```
+$ brew bundle ~/dotfiles/Brewfile
+```
