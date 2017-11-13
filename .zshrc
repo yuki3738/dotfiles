@@ -54,7 +54,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 export GOPATH=${HOME}/.go
-export PATH="${GOPATH}/bin:/Users/yuki3738/.rbenv/shims:/usr/local/var:/usr/local/bin:/bin:/usr/sbin:/sbin:/usr/bin:/usr/local/go/bin:"
+export PATH="${GOPATH}/bin:/usr/local/var:/usr/local/bin:/bin:/usr/sbin:/sbin:/usr/bin:/usr/local/go/bin:"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -74,3 +74,4 @@ export PATH="${GOPATH}/bin:/Users/yuki3738/.rbenv/shims:/usr/local/var:/usr/loca
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 export PATH="$HOME/.anyenv/bin:$PATH"
 eval "$(anyenv init -)"
+export PATH="$HOME/src/github.com/spice-life/infrastructure/bin:$PATH"
