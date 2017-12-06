@@ -47,6 +47,7 @@ install the_silver_searcher
 ########################
 
 ## Browser
+cask install hyper
 
 # Remove out	dated versions
 cleanup
