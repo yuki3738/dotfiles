@@ -26,10 +26,6 @@ install terminal-notifier
 install git
 install hub
 
-## Ruby
-install rbenv
-install ruby-build
-
 ## SQL
 install mysql
 install sqlite
