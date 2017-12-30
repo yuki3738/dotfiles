@@ -24,7 +24,6 @@ install terminal-notifier
 
 ## Git
 install git
-install hub
 
 ## SQL
 install mysql
