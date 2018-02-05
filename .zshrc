@@ -52,11 +52,6 @@ plugins=(git ruby osx bundler brew rails emoji-clock)
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
-export PATH="/usr/local/var:/usr/local/bin:/bin:/usr/sbin:/sbin:/usr/bin:"
-export PATH="$HOME/.anyenv/bin:$PATH"
-eval "$(anyenv init -)"
-
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
