@@ -1,17 +1,6 @@
 setopt auto_cd
 function chpwd() { ls }
 
-# agvimの設定
-function agvim () {
-  vim $(ag $@ | peco --query "$LBUFFER" | awk -F : '{print "-c " $2 " " $1}')
-}
-
-# gimの設定
-function gim() {
-  local file=`git ls-files --cached | peco`
-  [ -n "$file" ] && vim $file
-}
-
 # historyをpecoで検索
 function peco-select-history() {
   BUFFER=$(fc -n -r -l 1 | peco --query "${LBUFFER}")
