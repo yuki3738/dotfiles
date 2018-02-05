@@ -53,7 +53,10 @@ plugins=(git ruby osx bundler brew rails emoji-clock)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-export PATH="/usr/local/var:/usr/local/bin:/bin:/usr/sbin:/sbin:/usr/bin:/usr/local/go/bin:"
+export PATH="/usr/local/var:/usr/local/bin:/bin:/usr/sbin:/sbin:/usr/bin:"
+export PATH="$HOME/.anyenv/bin:$PATH"
+eval "$(anyenv init -)"
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -71,7 +74,3 @@ export PATH="/usr/local/var:/usr/local/bin:/bin:/usr/sbin:/sbin:/usr/bin:/usr/lo
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
-export PATH="$HOME/.anyenv/bin:$PATH"
-eval "$(anyenv init -)"
-export PATH="$HOME/src/github.com/spice-life/infrastructure/bin:$PATH"
-export PATH=/usr/local/Cellar/openssl/1.0.2l/bin:/Users/yuki3738/src/github.com/spice-life/infrastructure/bin:/Users/yuki3738/.anyenv/envs/rbenv/shims:/Users/yuki3738/.anyenv/envs/rbenv/bin:/Users/yuki3738/.anyenv/envs/ndenv/shims:/Users/yuki3738/.anyenv/envs/ndenv/bin:/Users/yuki3738/.anyenv/envs/goenv/shims:/Users/yuki3738/.anyenv/envs/goenv/bin:/Users/yuki3738/.anyenv/bin:/usr/local/var:/usr/local/bin:/bin:/usr/sbin:/sbin:/usr/bin:/usr/local/go/bin:
