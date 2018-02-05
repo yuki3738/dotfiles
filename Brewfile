@@ -29,9 +29,6 @@ install git
 install mysql
 install sqlite
 
-## Editor
-install vim
-
 ## IDE
 
 ## Utils
