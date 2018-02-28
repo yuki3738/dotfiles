@@ -8,7 +8,7 @@
 [color]
 	ui = auto
 [core]
-  editor = "atom --wait"
+  editor = "vim"
   excludesfile = ~/.gitignore
 [ghq]
 	root = ~/src
