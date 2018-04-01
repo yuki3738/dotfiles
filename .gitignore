@@ -6,3 +6,5 @@
 *.un~
 .bundle
 dump.rdb
+
+/vendor
