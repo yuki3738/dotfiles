@@ -7,3 +7,5 @@ ZSH_THEME="fino"
 ZSH_CUSTOM=${HOME}/src/github.com/yuki3738/dotfiles/.zsh.d
 plugins=(git ruby osx bundler rails themes)
 source $ZSH/oh-my-zsh.sh
+
+export JAVA_HOME=`/usr/libexec/java_home -v 10`
