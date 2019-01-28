@@ -9,6 +9,6 @@
 	ui = auto
 [core]
   editor = "vim"
-  excludesfile = ~/.gitignore
+	excludesfile = ~/.gitignore_global
 [ghq]
 	root = ~/src
