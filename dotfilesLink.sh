@@ -2,6 +2,7 @@ ln -sf ${HOME}/src/github.com/yuki3738/dotfiles/Brewfile ~/Brewfile
 ln -sf ${HOME}/src/github.com/yuki3738/dotfiles/.gitconfig ~/.gitconfig
 ln -sf ${HOME}/src/github.com/yuki3738/dotfiles/.gitignore ~/.gitignore
 ln -sf ${HOME}/src/github.com/yuki3738/dotfiles/.gitignore_global ~/.gitignore_global
+ln -sf ${HOME}/src/github.com/yuki3738/dotfiles/.tmux.conf ~/.tmux.conf
 ln -sf ${HOME}/src/github.com/yuki3738/dotfiles/.vimrc ~/.vimrc
 ln -sf ${HOME}/src/github.com/yuki3738/dotfiles/.zshrc ~/.zshrc
 ln -sf ${HOME}/src/github.com/yuki3738/dotfiles/.zshenv ~/.zshenv
