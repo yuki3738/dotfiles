@@ -10,3 +10,4 @@ source $ZSH/oh-my-zsh.sh
 setopt nonomatch
 export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
 alias ssh='~/bin/ssh-change-profile.sh'
+alias lg='lazygit'
