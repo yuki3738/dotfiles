@@ -7,3 +7,5 @@ set fileencodings=utf-8, sjis
 syntax enable
 
 filetype plugin indent on
+
+set cursorline
