@@ -1,6 +1,8 @@
 nnoremap sp :action SplitHorizontally<CR>
 nnoremap vs :action SplitVertically<CR>
 
+set clipboard=unnamed
+
 set multiple-cursors
 map <C-N>  <A-N>
 map <C-P>  <A-P>
