@@ -34,3 +34,4 @@ set wildmenu
 
 set runtimepath+=~/src/github.com/sheerun/vim-polyglot
 
+set backspace=indent,eol,start
