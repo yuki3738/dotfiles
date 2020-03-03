@@ -12,3 +12,5 @@
 	excludesfile = ~/.gitignore_global
 [ghq]
 	root = ~/src
+[commit]
+  template = ~/.gitmessage
