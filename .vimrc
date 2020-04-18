@@ -8,7 +8,15 @@ syntax enable
 
 filetype plugin indent on
 
+set autoindent
+
+set clipboard+=unnamed
+
 set cursorline
+
+set foldmethod=indent
+
+"set foldlevelstart=99
 
 set number
 
@@ -26,7 +34,11 @@ set smartindent
 
 set shiftwidth=2
 
-set clipboard+=unnamed
+set undofile
+if !isdirectory(expand("$HOME/.vim/undodir"))
+  call mkdir(expand("$HOME/.vim/undodir"),"p")
+endif
+set undodir=$HOME/.vim/undodir
 
 set virtualedit=block
 
@@ -34,4 +46,10 @@ set wildmenu
 
 set runtimepath+=~/src/github.com/sheerun/vim-polyglot
 
-set backspace=indent,eol,start
+set backspace=2 "set backspace=indent,eol,start と同じ
+
+colorscheme default
+
+packloadall
+
+silent! helptags ALL
