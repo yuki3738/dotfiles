@@ -11,6 +11,12 @@ eval "$(goenv init -)"
 
 export LC_ALL=en_US.UTF-8
 export ZSH=$HOME/src/github.com/yuki3738/dotfiles/oh-my-zsh
+
+GITHUB_CREDENTIAL_FILE=~/.github_credentials
+if [ -e $GITHUB_CREDENTIAL_FILE ]; then
+  source $GITHUB_CREDENTIAL_FILE
+fi
+
 ZSH_THEME="fino"
 ZSH_CUSTOM=${HOME}/src/github.com/yuki3738/dotfiles/.zsh.d
 plugins=(git ruby osx bundler rails themes)
