@@ -1,6 +1,13 @@
 export PATH="/usr/local/var:/usr/local/bin:/bin:/usr/sbin:/sbin:/usr/bin:"
 export PATH="$HOME/.anyenv/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
+export PATH=$PATH:./node_modules/.bin
+export PATH=$PATH:$HOME/.anyenv/envs/nodenv/versions/14.4.0/bin
+export GOENV_ROOT=$HOME/.goenv
+export PATH=$GOENV_ROOT/bin:$PATH
+
 eval "$(anyenv init -)"
+eval "$(goenv init -)"
 
 export LC_ALL=en_US.UTF-8
 export ZSH=$HOME/src/github.com/yuki3738/dotfiles/oh-my-zsh
