@@ -19,3 +19,6 @@ setopt nonomatch
 export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
 alias ssh='~/bin/ssh-change-profile.sh'
 alias lg='lazygit'
+
+# opam configuration
+test -r /Users/minamiya/.opam/opam-init/init.zsh && . /Users/minamiya/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
