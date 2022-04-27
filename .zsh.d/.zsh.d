@@ -1,0 +1,1 @@
+/Users/minamiya/src/github.com/yuki3738/dotfiles/.zsh.d
