@@ -161,3 +161,6 @@ fabric.properties
 
 # for byebug
 .byebug_history
+
+# for irb
+.irb_history
