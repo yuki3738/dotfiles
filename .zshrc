@@ -24,3 +24,6 @@ alias lg='lazygit'
 
 # opam configuration
 test -r /Users/minamiya/.opam/opam-init/init.zsh && . /Users/minamiya/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
