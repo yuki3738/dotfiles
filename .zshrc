@@ -1,3 +1,4 @@
+export PATH=/opt/homebrew/bin:$PATH
 export PATH="/usr/local/sbin:$PATH"
 export PATH=$PATH:./node_modules/.bin
 export GOENV_ROOT=$HOME/.goenv
