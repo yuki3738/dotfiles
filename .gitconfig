@@ -1,23 +1,32 @@
 [user]
 	name = yuki3738
 	email = y.minamiya@gmail.com
+
 [alias]
 	co = checkout
 	lg = log --graph --pretty=oneline --decorate --date=short --abbrev-commit --branches
-  # ログをtreeで表示(簡易tig) via http://webtech-walker.com/archive/2010/03/04034601.html
+	# ログをツリー形式で表示 (簡易tig風)
+	# 参考: http://webtech-walker.com/archive/2010/03/04034601.html
+
 [color]
 	ui = auto
+
 [core]
-  editor = "vim"
+	editor = "vim"
 	excludesfile = ~/.gitignore_global
+	quotepath = false
+
 [ghq]
 	root = ~/src
+
 [commit]
-  template = ~/.gitmessage
+	template = ~/.gitmessage
+
 [filter "lfs"]
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
 	clean = git-lfs clean -- %f
+
 [init]
 	defaultBranch = main
