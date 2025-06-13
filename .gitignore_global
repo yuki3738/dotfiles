@@ -166,3 +166,4 @@ fabric.properties
 .irb_history
 
 .cursor/*
+.claude/*
