@@ -55,3 +55,5 @@ alias lg='lazygit'
 # ------------------------------
 OPAM_INIT_FILE="$HOME/.opam/opam-init/init.zsh"
 [ -r "$OPAM_INIT_FILE" ] && source "$OPAM_INIT_FILE" > /dev/null 2> /dev/null || true
+
+[[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
