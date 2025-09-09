@@ -167,5 +167,6 @@ fabric.properties
 
 .cursor/*
 .claude/*
+CLAUDE.local.md
 .kiro/*
 .serena/*
