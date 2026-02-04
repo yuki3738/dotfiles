@@ -170,3 +170,6 @@ fabric.properties
 CLAUDE.local.md
 .kiro/*
 .serena/*
+
+.channels_cache_v2.json
+.users_cache.json
