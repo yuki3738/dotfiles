@@ -1,10 +1,21 @@
 # ------------------------------
 # PATH の設定
 # ------------------------------
-export PATH="/usr/local/bin:/usr/local/sbin:/opt/homebrew/bin:$HOME/.goenv/bin:$PYENV_ROOT/bin:$PATH"
+# システム / Homebrew
+export PATH="/usr/local/bin:/usr/local/sbin:/opt/homebrew/bin:$PATH"
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
+
+# 言語環境（anyenvより前に定義が必要）
+export PATH="$HOME/.goenv/bin:$PYENV_ROOT/bin:$PATH"
+
+# ローカルツール
+export PATH="$HOME/.local/bin:$PATH"                   # pipx
+export PATH="$HOME/.lmstudio/bin:$PATH"                # LM Studio CLI
+export PATH="$HOME/.antigravity/antigravity/bin:$PATH" # Antigravity
+
+# プロジェクトローカル（優先度最低）
 export PATH="$PATH:./node_modules/.bin"
-export PATH="$PATH:/usr/local/opt/imagemagick@6/bin"
-export PATH="$PATH:/Users/minamiyayuki/.local/bin" # pipx による追加
 
 # ------------------------------
 # 環境変数の設定
@@ -43,6 +54,7 @@ fi
 # その他の設定
 # ------------------------------
 setopt nonomatch
+[[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
 
 # ------------------------------
 # エイリアス
@@ -55,5 +67,3 @@ alias lg='lazygit'
 # ------------------------------
 OPAM_INIT_FILE="$HOME/.opam/opam-init/init.zsh"
 [ -r "$OPAM_INIT_FILE" ] && source "$OPAM_INIT_FILE" > /dev/null 2> /dev/null || true
-
-[[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
