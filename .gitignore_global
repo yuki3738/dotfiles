@@ -166,8 +166,8 @@ fabric.properties
 .irb_history
 
 .cursor/*
-.claude/*
 CLAUDE.local.md
+.claude/settings.local.json
 .kiro/*
 .serena/*
 
