@@ -66,6 +66,7 @@ exec $SHELL
 | `.ideavimrc` | IntelliJ IDEA用のVimプラグイン設定 |
 | `.pryrc` | Ruby開発用のPryデバッガ設定 |
 | `.hyper.js` | Hyperターミナルの設定 |
+| `.claude/` | [Claude Code](https://docs.anthropic.com/en/docs/claude-code)の設定（[詳細](.claude/README.md)） |
 
 ## 主な開発環境
 
