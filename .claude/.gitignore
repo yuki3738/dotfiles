@@ -34,6 +34,7 @@ telemetry/
 # IDE連携
 ide/
 chrome/
+.idea/
 
 # 参照データ
 references/
@@ -54,6 +55,15 @@ skills/daily-report/
 *.backup
 *.backup.*
 *.corrupted*
+
+# プラグイン（ローカルステート）
+plugins/
+
+# 旧コマンド（skills/に移行済み）
+commands/
+
+# 生成ファイル
+MY_SETTINGS.md
 
 # ===========================================
 # 内部ディレクトリ
