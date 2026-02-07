@@ -1,6 +1,7 @@
 #!/bin/bash
 
 ln -sf ${HOME}/src/github.com/yuki3738/dotfiles/.zsh.d ~/.zsh.d
+ln -snf ${HOME}/src/github.com/yuki3738/dotfiles/.claude ~/.claude
 
 DOT_FILES=(.gitconfig .gitignore .gitignore_global .tmux.conf .vimrc .zshrc .ideavimrc .gitmessage .pryrc)
 
