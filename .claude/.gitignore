@@ -16,10 +16,14 @@ plans/
 # デバッグ・ログ
 debug/
 
+# セキュリティ警告ステート
+security_warnings_state_*.json
+
 # キャッシュ類
 cache/
 paste-cache/
 stats-cache.json
+image-cache/
 
 # ファイル操作履歴
 file-history/
