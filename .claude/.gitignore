@@ -24,6 +24,7 @@ cache/
 paste-cache/
 stats-cache.json
 image-cache/
+mcp-needs-auth-cache.json
 
 # ファイル操作履歴
 file-history/
