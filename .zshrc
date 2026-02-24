@@ -61,6 +61,7 @@ setopt nonomatch
 # ------------------------------
 alias ssh='~/bin/ssh-change-profile.sh'
 alias lg='lazygit'
+alias c='claude'
 
 # ------------------------------
 # opam の設定
