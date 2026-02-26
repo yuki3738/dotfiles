@@ -19,6 +19,9 @@ debug/
 # セキュリティ警告ステート
 security_warnings_state_*.json
 
+# 認証情報
+.credentials.json
+
 # キャッシュ類
 cache/
 paste-cache/
