@@ -33,7 +33,9 @@
     ]
   },
   "enabledPlugins": {
-    "slack@claude-plugins-official": true
+    "slack@claude-plugins-official": true,
+    "skill-creator@claude-plugins-official": true,
+    "ralph-loop@claude-plugins-official": true
   },
   "alwaysThinkingEnabled": true
 }
