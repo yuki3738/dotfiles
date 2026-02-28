@@ -37,5 +37,6 @@
     "skill-creator@claude-plugins-official": true,
     "ralph-loop@claude-plugins-official": true
   },
-  "alwaysThinkingEnabled": true
+  "alwaysThinkingEnabled": true,
+  "includeCoAuthoredBy": false
 }
