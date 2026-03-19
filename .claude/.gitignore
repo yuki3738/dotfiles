@@ -4,6 +4,7 @@
 
 # 会話・コマンド履歴
 history.jsonl
+sessions/
 
 # プロジェクト固有設定
 projects/
