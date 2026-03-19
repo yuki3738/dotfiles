@@ -1,5 +1,8 @@
 {
   "includeCoAuthoredBy": false,
+  "permissions": {
+    "defaultMode": "auto"
+  },
   "hooks": {
     "Stop": [
       {
@@ -36,8 +39,10 @@
   "enabledPlugins": {
     "slack@claude-plugins-official": true,
     "skill-creator@claude-plugins-official": true,
-    "ralph-loop@claude-plugins-official": true
+    "ralph-loop@claude-plugins-official": true,
+    "ruby-lsp@claude-plugins-official": true
   },
   "alwaysThinkingEnabled": true,
-  "autoUpdatesChannel": "latest"
+  "autoUpdatesChannel": "latest",
+  "skipAutoPermissionPrompt": true
 }
