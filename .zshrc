@@ -13,6 +13,8 @@ export PATH="$HOME/.goenv/bin:$PYENV_ROOT/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"                   # pipx
 export PATH="$HOME/.lmstudio/bin:$PATH"                # LM Studio CLI
 export PATH="$HOME/.antigravity/antigravity/bin:$PATH" # Antigravity
+export PATH="$HOME/.browser-use-env/bin:$PATH"           # browser-use CLI
+export PATH="$HOME/.browser-use/bin:$PATH"               # browser-use profile-use
 
 # プロジェクトローカル（優先度最低）
 export PATH="$PATH:./node_modules/.bin"
@@ -68,3 +70,10 @@ alias c='claude'
 # ------------------------------
 OPAM_INIT_FILE="$HOME/.opam/opam-init/init.zsh"
 [ -r "$OPAM_INIT_FILE" ] && source "$OPAM_INIT_FILE" > /dev/null 2> /dev/null || true
+
+# bun completions
+[ -s "/Users/minamiyayuki/.bun/_bun" ] && source "/Users/minamiyayuki/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
