@@ -36,6 +36,10 @@
       }
     ]
   },
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/statusline.sh"
+  },
   "enabledPlugins": {
     "slack@claude-plugins-official": true,
     "skill-creator@claude-plugins-official": true,
