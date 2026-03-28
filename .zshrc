@@ -77,3 +77,6 @@ OPAM_INIT_FILE="$HOME/.opam/opam-init/init.zsh"
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+# Load secrets from ~/.env (gitignored)
+[ -f ~/.env ] && source ~/.env
