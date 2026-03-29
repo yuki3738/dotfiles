@@ -17,6 +17,9 @@ plans/
 # デバッグ・ログ
 debug/
 
+# サーバー管理設定（自動生成）
+remote-settings.json
+
 # セキュリティ警告ステート
 security_warnings_state_*.json
 
