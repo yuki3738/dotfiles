@@ -80,3 +80,6 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 # Load secrets from ~/.env (gitignored)
 [ -f ~/.env ] && source ~/.env
+
+# Entire CLI shell completion
+autoload -Uz compinit && compinit && source <(entire completion zsh)
