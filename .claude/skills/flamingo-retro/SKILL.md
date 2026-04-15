@@ -18,11 +18,11 @@ Flamingoチームの直近1週間の活動をGitHub・Slackから収集し、ふ
 | GitHub | 名前 | 備考 |
 |--------|------|------|
 | sotarofujimaki | 藤牧 宗太郎 | リード候補。DevOps含めチーム全体を見れる状態を目指す |
-| YutaKato3548 | 加藤 | 不確実性の高い課題にもチームを引っ張れるようにする |
-| yodakaEngineer | よだか | 自発的に動ける状態を目指す |
-| k-shogo | 川口 | 技術的強みを組織に伝播させる |
-| mtkasima | kasima | - |
-| yusuke-ogaki | 大垣 | - |
+| YutaKato3548 | 加藤 裕太 | 不確実性の高い課題にもチームを引っ張れるようにする |
+| yodakaEngineer | 藤田 泰輔（yodaka） | 自発的に動ける状態を目指す |
+| k-shogo | 川口 将吾 | 技術的強みを組織に伝播させる |
+| mtkasima | 山本 純己（愛称: カシマさん） | **最古参メンバー。2026-04末退職予定**。GBP海外対応・Searches多言語・競合分析・投稿機能・Facebook連携・デモデータ・AIエージェントAPIの7領域に知見 |
+| yusuke-ogaki | 大垣 祐介 | - |
 
 - **主要リポジトリ**: kutikomi-com, kutikomi-lab, kutikomi-com-terraform, kutikomi-com-searches, kutikomi-academy
 
