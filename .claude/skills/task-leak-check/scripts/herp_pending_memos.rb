@@ -1,16 +1,14 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-# HERP Hire API を使って、指定したユーザーがoperatorに入っていて
-# かつ note（メモ）が空の候補者一覧を出力する。
+# HERP Hire API を使って、メモ（note）が空の active 候補者の件数を出力する。
 #
 # 使い方:
-#   ruby herp_pending_memos.rb --operator-id U-L0EK3
-#   ruby herp_pending_memos.rb --email y.minamiya@mov.am
+#   ruby herp_pending_memos.rb              # 全 active 候補者のうちメモ空の件数
+#   ruby herp_pending_memos.rb --verbose    # 件数＋候補者一覧
 #
 # 環境変数:
-#   HERP_API_KEY     : HERP Hire APIキー（必須）
-#   HERP_MY_USER_ID  : デフォルトのoperator ID（任意、--operator-id優先）
+#   HERP_API_KEY : HERP Hire APIキー（必須）
 
 require 'net/http'
 require 'json'
@@ -30,19 +28,7 @@ def api_get(path, query = {})
   JSON.parse(res.body)
 end
 
-def resolve_operator_id(email)
-  (1..MAX_PAGES).each do |page|
-    data = api_get('/v1/users', page: page)
-    users = data['users'] || []
-    break if users.empty?
-    hit = users.find { |u| (u['email'] || '').downcase == email.downcase }
-    return hit['id'] if hit
-    break unless data['hasNextPage']
-  end
-  nil
-end
-
-def all_candidacies_with_empty_note(operator_id)
+def all_active_candidacies_with_empty_note
   results = []
   (1..MAX_PAGES).each do |page|
     data = api_get('/v1/candidacies', page: page)
@@ -50,7 +36,6 @@ def all_candidacies_with_empty_note(operator_id)
     break if cands.empty?
     cands.each do |c|
       next unless c['status'] == 'active'
-      next unless (c['operators'] || []).include?(operator_id)
       note = c['note']
       next if note && !note.strip.empty?
       results << c
@@ -61,42 +46,30 @@ def all_candidacies_with_empty_note(operator_id)
 end
 
 def main
-  opts = { operator_id: ENV['HERP_MY_USER_ID'] }
+  opts = { verbose: false }
   OptionParser.new do |o|
-    o.on('--operator-id ID', 'HERPユーザーID（operator）') { |v| opts[:operator_id] = v }
-    o.on('--email EMAIL', 'ユーザーのemailから逆引き') { |v| opts[:email] = v }
+    o.on('--verbose', '候補者一覧も出力') { opts[:verbose] = true }
   end.parse!
 
-  unless ENV['HERP_API_KEY']
-    abort 'エラー: HERP_API_KEY が未設定です'
-  end
+  abort 'エラー: HERP_API_KEY が未設定です' unless ENV['HERP_API_KEY']
 
-  operator_id = opts[:operator_id]
-  if operator_id.nil? || operator_id.empty?
-    if opts[:email]
-      operator_id = resolve_operator_id(opts[:email])
-      abort "ユーザーが見つかりません: #{opts[:email]}" unless operator_id
-    else
-      abort '--operator-id または --email を指定してください'
-    end
-  end
+  candidacies = all_active_candidacies_with_empty_note
 
-  candidacies = all_candidacies_with_empty_note(operator_id)
+  output = { count: candidacies.size }
 
-  output = {
-    operator_id: operator_id,
-    count: candidacies.size,
-    candidacies: candidacies.map do |c|
+  if opts[:verbose]
+    output[:candidacies] = candidacies.map do |c|
       {
         id: c['id'],
         name: c['name'],
         step: c['step'],
+        operators: c['operators'],
         appliedAt: c['appliedAt'],
-        updatedAt: c['updatedAt'],
         url: "https://movinc.v1.herp.cloud/ats/p/candidacies/#{c['id']}"
       }
     end
-  }
+  end
+
   puts JSON.pretty_generate(output)
 end
 

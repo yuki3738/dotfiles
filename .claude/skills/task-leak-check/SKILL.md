@@ -97,13 +97,14 @@ DMは自分がメンションされなくても「自分宛の依頼」として
 
 ```bash
 source ~/.env 2>/dev/null
-ruby ~/.claude/skills/task-leak-check/scripts/herp_pending_memos.rb \
-  --operator-id U-L0EK3
+ruby ~/.claude/skills/task-leak-check/scripts/herp_pending_memos.rb
 ```
 
-結果はJSON。`candidacies` 配列の各要素が「自分がoperatorでメモが空の active 応募」。各要素に `name`, `step`, `updatedAt`, `url` が入っている。
+結果はJSON。`count` が「active 応募のうちメモが空の件数」。
 
-**注意**: HERP の operator 判定は `U-L0EK3` を固定で使う。件数が0なら「該当なし」として素直にそう表示する（エラーではない）。
+**背景**: 南谷はHERPの `operators` フィールドには設定されていない（operatorは成田・松岡・森・瀧川等の採用チーム）。EMとして全候補者を横断レビューしメモを書く立場のため、operator関係なく**全active候補者のうちメモ空の件数**を出す。
+出力は件数のみ。一覧が必要な場合は `--verbose` を付ける。
+HERPの候補者一覧URL: https://movinc.v1.herp.cloud/ats/p/candidacies
 
 ### 4. GitHub レビュー依頼
 
@@ -141,11 +142,10 @@ Draft PR はスクリプト側で除外済み。
   - <Slackパーマリンク>
 - ...
 
-## 📝 HERP メモ未入力候補者（自分担当・M件）
+## 📝 HERP メモ未入力候補者（M件）
 
-- [候補者名] / ステップ: [step] / 最終更新: YYYY-MM-DD
-  - <候補者URL>
-- ...
+- メモ未入力の active 応募: **M件**
+- https://movinc.v1.herp.cloud/ats/p/candidacies
 
 ## 🔀 GitHub レビュー依頼（未対応・M件）
 
