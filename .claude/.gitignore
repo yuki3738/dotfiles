@@ -81,6 +81,9 @@ commands/
 # 生成ファイル
 MY_SETTINGS.md
 
+# Claude Devtools（別アプリ）のローカル設定。pinnedSessions 等マシン依存stateを含むため追跡しない
+claude-devtools-config.json
+
 # ===========================================
 # 内部ディレクトリ
 # ===========================================
