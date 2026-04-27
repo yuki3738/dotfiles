@@ -83,3 +83,6 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 # Entire CLI shell completion
 autoload -Uz compinit && compinit && source <(entire completion zsh)
+
+# mise (tool version manager)
+eval "$(/opt/homebrew/bin/mise activate zsh)"
