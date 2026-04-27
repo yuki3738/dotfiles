@@ -107,6 +107,22 @@ git checkout -b feature/add-<team>-members-<count>users origin/main
 
 mise/terraformが見つからない場合はスキップしてCIに委ねる（手元環境差のため）。
 
+**⚠️ `mise install` を実行する場合は必ず `--locked` をつける**:
+
+```bash
+mise install --locked   # ✅ CI と同じ挙動（lockfile尊重）
+mise install            # ❌ mise.lock に不要なプラットフォーム情報を追記してしまう
+```
+
+このリポジトリの `mise.lock` は「CI用 `linux-x64` + ローカル開発用 `macos-arm64`」の2つだけに絞って管理されている（commit `5fc4ccb8` の方針: GitHub APIレート制限回避が目的で、プラットフォームを最小限に）。
+`mise install` を無オプションで実行すると `linux-arm64` / `macos-x64` / `linux-*-musl` 等のエントリが副作用で追記される。これらはこのリポジトリの方針に反するのでcommitしてはいけない。
+
+もし副作用で mise.lock が汚れたら:
+
+```bash
+git restore mise.lock   # 元に戻す
+```
+
 ### Step 7: コンフリクト対策
 
 main が進んでいる場合、`stash → checkout -b from origin/main → stash pop` 方式で
@@ -154,6 +170,25 @@ gh pr create --draft --title "<title>" --body "..."
 **⚠️ バッククォートのエスケープ禁止**: `gh pr create --body "$(cat <<'EOF' ... EOF)"` で HEREDOC を使う場合、
 `'EOF'` でシングルクォート指定しているため変数展開されない → バッククォートを `\`` とエスケープしてはいけない。
 素のバッククォート（` ` ` `）で書く。誤ってエスケープするとPRに `\`` とそのまま出てしまう。
+
+### Step 10: 招待対象者への案内メッセージ出力
+
+PR作成完了後、**必ず以下のメッセージをそのまま出力する**。招待対象者は「招待中なのにメールが来ない・GitHub画面に何も出ない」と詰まることが多いため、確認手順を最初に渡しておくと問い合わせを減らせる。
+
+出力するメッセージ（このまま表示）:
+
+````markdown
+## 招待された本人に確認してもらうこと
+
+PRマージ後、招待メールが届かない・GitHub画面に招待が出ないときは、以下を順に確認してください。
+
+1. https://github.com/settings/emails でプライマリメールが verified になっているか（未verifyなら verify する）
+2. https://github.com/settings/organizations に movinc の招待が表示されているか（画面上に出るので、メールが届かなくてもここから accept できる）
+3. https://github.com/notifications と通知設定で organization invitation メールが有効か
+4. ログインしているアカウントのusernameが招待中のusernameと完全一致しているか（最重要）
+````
+
+**注意**: この案内はPR作成時点（マージ前）ではなく、マージ後に招待が飛んだタイミングで本人が確認するための手順。PRのtest planには含めない（post-mergeの手順はtest planに書かない原則）。
 
 ## よくあるパターン
 
