@@ -48,7 +48,8 @@
     "codex@openai-codex": true,
     "pr-review-toolkit@claude-plugins-official": true,
     "plugin-dev@claude-plugins-official": true,
-    "claude-md-management@claude-plugins-official": true
+    "claude-md-management@claude-plugins-official": true,
+    "claude-code-setup@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "openai-codex": {
@@ -60,5 +61,8 @@
   },
   "alwaysThinkingEnabled": true,
   "autoUpdatesChannel": "latest",
+  "theme": "light",
+  "editorMode": "vim",
+  "preferredNotifChannel": "iterm2",
   "skipAutoPermissionPrompt": true
 }
