@@ -19,7 +19,25 @@ description: |
 - **候補者名の場合**: `Private/Interview/Casual/` 配下から候補者名を含むファイルを検索する
 - **ファイルパスの場合**: 指定されたファイルを直接読み込む
 
-Google Docsから直接読み込む場合は、ユーザーがURLを提供するか、`gog drive search` で検索してから `gog drive download --format txt` で取得する。
+Google Docsから直接読み込む場合は、ユーザーがURLを提供するか、`gws` CLIで以下のように取得する:
+
+```bash
+# 検索（候補者名で本文検索）
+gws drive files list --params '{
+  "q": "fullText contains '\''<候補者名>'\'' and mimeType='\''application/vnd.google-apps.document'\'' and trashed=false",
+  "pageSize": 10,
+  "fields": "files(id,name,modifiedTime)",
+  "orderBy": "modifiedTime desc"
+}'
+
+# Markdown export（gws の --output は cwd 配下のみ）
+cd /tmp && gws drive files export --params '{
+  "fileId": "<DOC_ID>",
+  "mimeType": "text/markdown"
+}' --output interview-eval.md
+```
+
+認証期限切れ時は `gws auth login` の実行をユーザーに依頼する。
 
 ## 処理の流れ
 

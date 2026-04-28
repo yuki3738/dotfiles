@@ -52,23 +52,34 @@ ls "/Users/minamiyayuki/src/github.com/yuki3738/obsidian-vault/Work/mov/1on1/"
 
 ### Phase 2: Google Docsの検索
 
-`gog` CLIを使ってGoogle Driveから1on1議事録を検索する。
+`gws` CLIを使ってGoogle Driveから1on1議事録を検索する（Geminiメモはタイトルに名前が入らないため `fullText contains` を使う）。
 
 #### Step 2-1: ドライブ検索
 
 以下の検索を順番に試行し、**最初にヒットした結果**を使用する:
 
 ```bash
-# 検索1: 名前 + "1on1" で検索
-gog drive search "$MEMBER_NAME 1on1" --account y.minamiya@mov.am --json --no-input --max 10
+# 検索1: 名前 + "1on1" で本文検索
+gws drive files list --params '{
+  "q": "fullText contains '\''$MEMBER_NAME 1on1'\'' and mimeType='\''application/vnd.google-apps.document'\'' and trashed=false",
+  "pageSize": 10,
+  "fields": "files(id,name,mimeType,modifiedTime,webViewLink)",
+  "orderBy": "modifiedTime desc"
+}'
 
-# 検索2: 名前のみで検索
-gog drive search "$MEMBER_NAME" --account y.minamiya@mov.am --json --no-input --max 10
+# 検索2: 名前のみで本文検索
+gws drive files list --params '{
+  "q": "fullText contains '\''$MEMBER_NAME'\'' and mimeType='\''application/vnd.google-apps.document'\'' and trashed=false",
+  "pageSize": 10,
+  "fields": "files(id,name,mimeType,modifiedTime,webViewLink)",
+  "orderBy": "modifiedTime desc"
+}'
 ```
 
 検索結果のJSONから以下の条件でフィルタリングする:
 - `mimeType` が `application/vnd.google-apps.document`（Google Docs）であること
-- ファイル名に名前や "1on1" が含まれること
+- 指定日付に近い `modifiedTime` であること
+- 必要に応じてファイル名に名前や "1on1" が含まれることを優先
 
 #### Step 2-2: 候補の絞り込み
 
@@ -80,10 +91,14 @@ gog drive search "$MEMBER_NAME" --account y.minamiya@mov.am --json --no-input --
 
 ### Phase 3: 議事録コンテンツの取得
 
-`gog drive download` でプレーンテキストとしてダウンロードする（`gog docs cat` はDocs APIが未有効のため使用不可）:
+`gws drive files export` で **Markdown** としてダウンロードする（見出し・太字・リンクが構造化されて保持される）:
 
 ```bash
-gog drive download "$DOC_ID" --account y.minamiya@mov.am --no-input --format txt --out /tmp/1on1-$MEMBER_NAME-YYYY-MM-DD.txt
+# gws の --output は cwd 配下にしか書き込めないため、/tmp に cd してから実行する
+cd /tmp && gws drive files export --params '{
+  "fileId": "$DOC_ID",
+  "mimeType": "text/markdown"
+}' --output 1on1-$MEMBER_NAME-YYYY-MM-DD.md
 ```
 
 ダウンロードしたファイルの内容を `$CONTENT` とする。
@@ -96,13 +111,14 @@ gog drive download "$DOC_ID" --account y.minamiya@mov.am --no-input --format txt
 
 ### Phase 4: Markdownファイルの作成
 
-取得したコンテンツを以下のようにMarkdownとして整形する:
+`gws` の Markdown export は見出し（`#`/`##`/`###`）・太字（`**`）・リンク（`[text](url)`）・箇条書き（`*`）が既に構造化されている。以下の整形のみ行う:
 
 - Gemini生成メモのヘッダー部分（「📝 メモ」「日付」「招待済み...」「添付ファイル...」）は除去する
-- Gemini生成メモのフッター部分（「Gemini のメモの内容が正確か確認する必要があります。」以降）は除去する
-- 本文のセクション見出しを `##` に、サブ見出しを `###` に変換する
-- 箇条書きの `*` を `-` に変換し、太字タイトル部分はそのまま活かす
-- 見出し構造がない場合でも、余計な整形は加えずにそのまま保存する
+- Gemini生成メモのフッター部分（「Gemini が生成したメモの内容の正確性をご確認ください。」以降）は除去する
+- 「この要約を評価する」など Gemini フィードバックリンクの行は除去する
+- `*` 箇条書きを `-` に統一する（必要に応じて）
+- ローマ字の人名はGoogle Docsに記載されているものをそのまま使用する（漢字の表記が必要な場合のみユーザーに確認）
+- 会社名「Mob」「モブ」は **mov**（株式会社mov）に置換する
 
 保存先パス:
 ```
@@ -133,4 +149,6 @@ git push
 - Google Docsから議事録が見つからない場合は、必ずユーザーに確認する（勝手に処理を中断しない）
 - ユーザーがドキュメントのURLを提供した場合、URLからドキュメントIDを抽出する
   - 形式: `https://docs.google.com/document/d/{DOC_ID}/edit`
-- `gog` コマンドが失敗した場合はエラー内容をユーザーに伝え、対処法を提案する
+- `gws` コマンドが失敗した場合はエラー内容をユーザーに伝え、対処法を提案する
+  - 認証期限切れ（`invalid_grant` / `Token has been expired`）: ユーザーに `gws auth login` の実行を依頼する
+  - スコープ不足: `gws auth login --services drive,docs` を依頼する

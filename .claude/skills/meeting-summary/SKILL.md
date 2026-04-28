@@ -43,14 +43,18 @@ argument-hint: <Google DocsのURL or DocID> [出力先パス(省略可)]
 
 ### Step 1: 議事録の取得
 
-`gog CLI` で Google Docs をエクスポートする（global CLAUDE.md ルールに従い、他の方法は試さない）。
+`gws CLI` で Google Docs を **Markdown** としてエクスポートする（見出し・太字・リンクが構造化されたまま取れるため、後段の整形が楽）。
 
 ```bash
-gog --account=y.minamiya@mov.am docs export <DOC_ID> --format=txt --out=tmp/meeting_raw.txt
+# gws の --output は cwd 配下にしか書けないため tmp に cd する
+mkdir -p tmp && cd tmp && gws drive files export --params '{
+  "fileId": "<DOC_ID>",
+  "mimeType": "text/markdown"
+}' --output meeting_raw.md
 ```
 
-- アカウントが期限切れ（`invalid_grant`）の場合は、ユーザーに `gog auth manage` で再認証を依頼する
-- Google Docs API が無効（`accessNotConfigured`）の場合は `docs cat` ではなく `docs export --format=txt` を使う（Drive API 経由でエクスポート可能）
+- 認証期限切れ（`invalid_grant` / `Token has been expired`）の場合は、ユーザーに `gws auth login` の実行を依頼する
+- スコープ不足の場合は `gws auth login --services drive,docs` を依頼する
 - 取得後、`Read` ツールで全文を読み込む
 
 ### Step 2: 内容分析
@@ -147,7 +151,7 @@ gog --account=y.minamiya@mov.am docs export <DOC_ID> --format=txt --out=tmp/meet
 
 | 症状 | 対処 |
 |------|------|
-| `invalid_grant` / `Token has been expired` | ユーザーに `gog auth manage` 実行を依頼 |
-| `accessNotConfigured` (Google Docs API 無効) | `gog docs export --format=txt` (Drive API 経由) に切り替え |
+| `invalid_grant` / `Token has been expired` | ユーザーに `gws auth login` 実行を依頼 |
+| スコープ不足 | `gws auth login --services drive,docs` 実行を依頼 |
 | Doc ID が抽出できない | URL からの抽出 or ユーザーに DocID 直接入力を依頼 |
 | 文字起こし本文が極端に短い／壊れている | サマリー生成を中止し、原因をユーザーに報告 |

@@ -84,18 +84,19 @@ URLの形式:
 
 ### Phase 1: Google Docsからダウンロード
 
-日付未確定でも先にダウンロードする（出力ファイル名は `$DOC_ID` ベース）:
+日付未確定でも先にダウンロードする（出力ファイル名は `$DOC_ID` ベース）。`gws` の Markdown export を使うと見出し・太字・リンクが構造化されたまま取れる:
 
 ```bash
-gog drive download "$DOC_ID" \
-  --account y.minamiya@mov.am \
-  --no-input \
-  --format txt \
-  --out /tmp/flamingo-retro-$DOC_ID.txt
+# gws の --output は cwd 配下にしか書けないため /tmp に cd する
+cd /tmp && gws drive files export --params '{
+  "fileId": "$DOC_ID",
+  "mimeType": "text/markdown"
+}' --output flamingo-retro-$DOC_ID.md
 ```
 
 失敗した場合:
-- **OAuth token期限切れ** (`invalid_grant`): ユーザーに `gog auth login --account y.minamiya@mov.am` の実行を依頼
+- **OAuth token期限切れ** (`invalid_grant`): ユーザーに `gws auth login` の実行を依頼
+- **スコープ不足**: `gws auth login --services drive,docs` を依頼
 - **ファイル未発見**: URLが正しいかユーザーに確認
 
 ### Phase 2: 日付の確定とコンテンツの整形

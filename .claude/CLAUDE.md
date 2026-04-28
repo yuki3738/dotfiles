@@ -52,7 +52,15 @@
 
 ## ツール
 
-- Google Docsの取得には**gog CLI**を使う。他の方法を試さない
+### Google Workspace API (Drive / Docs / Calendar / Gmail / Sheets / Slides / Chat)
+
+- **第一選択は `gws` CLI**（googleworkspace-cli, バイナリ名 `gws`）
+  - Google Discovery Service を実行時参照するため Workspace API 全体に対応
+  - 出力は構造化JSON、`gws drive files export --params '{"mimeType":"text/markdown"}'` で **Markdown export** が取れる（見出し・太字・リンクが構造化されたまま）
+  - `--output` は **cwd 配下にしか書き込めない**ため、`/tmp` などに出すときは `cd /tmp && gws ... --output foo.md` の形にする
+  - 認証期限切れ（`invalid_grant`）時は `gws auth login` を依頼
+- `gog` は補助的な互換ツールとして残置可。新規スキルでは `gws` を使う
+- 公式 Google Workspace CLI（Cloud Next '26 で予告済み）がリリースされたら再評価する
 
 ---
 
