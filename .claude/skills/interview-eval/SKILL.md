@@ -16,7 +16,7 @@ description: |
 
 `/interview-eval <候補者名 or ファイルパス>` で起動する。
 
-- **候補者名の場合**: `Private/Interview/Casual/` 配下から候補者名を含むファイルを検索する
+- **候補者名の場合**: `Work/mov/Hiring/Interview/Casual/` 配下から候補者名を含むファイルを検索する
 - **ファイルパスの場合**: 指定されたファイルを直接読み込む
 
 Google Docsから直接読み込む場合は、ユーザーがURLを提供するか、`gws` CLIで以下のように取得する:
