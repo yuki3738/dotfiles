@@ -64,5 +64,6 @@
   "theme": "light",
   "editorMode": "vim",
   "preferredNotifChannel": "iterm2",
-  "skipAutoPermissionPrompt": true
+  "skipAutoPermissionPrompt": true,
+  "agentPushNotifEnabled": true
 }
