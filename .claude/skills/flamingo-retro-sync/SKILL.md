@@ -196,7 +196,7 @@ tags:
 - 週次ふりかえり: [[flamingo-retro-YYYY-MM-DD|Flamingo 週次ふりかえり]]
 ```
 
-※ `Private/Weekly/YYYY/flamingo-retro-YYYY-MM-DD.md` が既に存在する場合のみリンクを書く。存在しなければこのセクションを省略。
+※ `Private/Weekly/YYYY/MM/flamingo-retro-YYYY-MM-DD.md` が既に存在する場合のみリンクを書く。存在しなければこのセクションを省略。
 
 ### Phase 3: 保存
 

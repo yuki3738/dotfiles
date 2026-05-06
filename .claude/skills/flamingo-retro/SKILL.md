@@ -277,14 +277,15 @@ _今後のリスク・障害。今週の傾向から予測されるもの。_
 
 ### 6. ファイルの保存
 
-- **保存先**: `Private/Weekly/{YYYY}/flamingo-retro-{END_DATE}.md`
-- ディレクトリが存在しない場合は作成する
+- **保存先**: `Private/Weekly/{YYYY}/{MM}/flamingo-retro-{END_DATE}.md`
+  - `{YYYY}` と `{MM}` は `{END_DATE}` の年月
+- ディレクトリが存在しない場合は作成する（`Daily` と同じく `{YYYY}/{MM}/` 構造）
 
 ### 7. Git commit
 
 ```bash
 cd /Users/minamiyayuki/src/github.com/yuki3738/obsidian-vault
-git add "Private/Weekly/{YYYY}/flamingo-retro-{END_DATE}.md"
+git add "Private/Weekly/{YYYY}/{MM}/flamingo-retro-{END_DATE}.md"
 git commit -m "docs: add Flamingo weekly retro {END_DATE}"
 ```
 
