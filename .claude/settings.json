@@ -49,13 +49,20 @@
     "pr-review-toolkit@claude-plugins-official": true,
     "plugin-dev@claude-plugins-official": true,
     "claude-md-management@claude-plugins-official": true,
-    "claude-code-setup@claude-plugins-official": true
+    "claude-code-setup@claude-plugins-official": true,
+    "cctop@cctop": true
   },
   "extraKnownMarketplaces": {
     "openai-codex": {
       "source": {
         "source": "github",
         "repo": "openai/codex-plugin-cc"
+      }
+    },
+    "cctop": {
+      "source": {
+        "source": "github",
+        "repo": "st0012/cctop"
       }
     }
   },
@@ -64,6 +71,6 @@
   "theme": "light",
   "editorMode": "vim",
   "preferredNotifChannel": "iterm2",
-  "skipAutoPermissionPrompt": true,
-  "agentPushNotifEnabled": true
+  "agentPushNotifEnabled": true,
+  "skipAutoPermissionPrompt": true
 }
