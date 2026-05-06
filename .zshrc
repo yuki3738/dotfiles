@@ -64,6 +64,7 @@ setopt nonomatch
 alias ssh='~/bin/ssh-change-profile.sh'
 alias lg='lazygit'
 alias c='claude'
+alias mine='rubymine'
 
 # ------------------------------
 # opam の設定
@@ -86,3 +87,7 @@ autoload -Uz compinit && compinit && source <(entire completion zsh)
 
 # mise (tool version manager)
 eval "$(/opt/homebrew/bin/mise activate zsh)"
+
+# External editor for CLI tools
+export EDITOR="code --wait"
+export VISUAL="code --wait"
