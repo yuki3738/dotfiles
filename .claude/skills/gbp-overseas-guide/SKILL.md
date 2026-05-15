@@ -1,27 +1,22 @@
 ---
 name: gbp-overseas-guide
 description: |
-  2026-04末退職予定のmtkasima（本名: 山本純己 / 愛称: カシマさん）が残す業務ドメインの分身ガイド。
-  GBP海外対応を中心に、Searches多言語・競合分析・投稿機能・Facebook連携・デモデータ・AIエージェントAPIの7領域で
-  「カシマさんなら何に注意するか」「どこを触るか」を答える。
+  kutikomi-com の GBP海外対応を中心に、関連する 6 領域（Searches多言語・競合分析・投稿機能・Facebook連携・デモデータ・AIエージェントAPI）の
+  ドメインマップ・ハマりポイント・定型ワークフローをまとめたガイド。
   トリガー: "/gbp-overseas-guide" または「GBP海外」「competitor」「Searches多言語」「投稿locale」「demo:import」「ai_agent API」等の相談時
   使用場面:
-    (1) カシマさんが担当していた領域のコードを触るとき
-    (2) 実装方針に迷ったとき「彼ならどう判断したか」を参照したいとき
+    (1) 上記7領域のコードを触るとき
+    (2) 実装方針に迷ったときの判断材料がほしいとき
     (3) 新人オンボーディングで当該ドメインの地図を渡したいとき
 ---
 
-# Skill: GBP海外対応ガイド（mtkasima の分身）
+# Skill: GBP海外対応 + 関連ドメインガイド
 
 ## Overview
 
-このSkillは、movinc/kutikomi-com でバックエンド開発を担当していた **mtkasima（本名: 山本純己 / 愛称: カシマさん）** が
-**2026-04末退職**を前に残す業務ドメイン知識を、彼のPR（#12450〜#19404 / 約80件）から抽出して形式知化したものです。
+kutikomi-com 内で歴史的に密接に発展してきた以下 7 領域のドメイン知識を、関連 PR から抽出して形式知化したものです。
+GBP海外対応がシグネチャ領域として大きいため、Skill名に採用しています。
 
-名前はGBP海外対応を冠していますが、**彼の担当7領域全般**を扱います。GBP海外対応が彼のシグネチャ領域だったため
-代表として名前に採用しました。
-
-- **元データ**: `gh pr list --author mtkasima` で取得したマージ済みPR
 - **配置**: `~/.claude/skills/gbp-overseas-guide/`（個人用Skill）
 - **関連ドキュメント**: [kutikomi-com/docs/gmb/overseas.md](https://github.com/movinc/kutikomi-com/blob/main/docs/gmb/overseas.md) — GBP海外対応の詳細リファレンス（チーム公式資産）
 - **更新方法**: 下部の「Skillの更新方法」を参照
@@ -29,11 +24,11 @@ description: |
 > **Note**: GBP海外対応の詳細は `docs/gmb/overseas.md` に移管済み。本Skillは対話ガイド・チェックリストに特化。
 > 他6領域は将来docs化予定。
 
-## 彼の担当ドメイン（7領域）
+## 対象ドメイン（7領域）
 
 | # | 領域 | キーワード | 代表PR |
 |---|------|-----------|--------|
-| 1 | **GBP海外対応** | locality, region_code, language_code, 台湾/香港/韓国 | #17497, #18731, #18774, #18892, #18953 |
+| 1 | **GBP海外対応** | locality, region_code, language_code, 台湾/香港/韓国/タイ | #17497, #18731, #18774, #18892, #18953, #19332, #19722 |
 | 2 | **Searches多言語** | post_kcom_searches_stores.locale, original_text, 国絞り込み | #13257, #13275, #19220, #19332, #19404 |
 | 3 | **競合店舗・競合分析** | store_competitors, Competitor, 星の数分析, 相関分析 | #15736, #16088, #16481, #16504, #16920, #16779 |
 | 4 | **投稿機能（Post）** | 繰り返し投稿, 公開終了予定日, 承認申請 | #15620, #15671, #17135, #17150, #17187 |
@@ -47,12 +42,12 @@ description: |
 
 ### 1. GBP海外対応
 
-詳細は **[kutikomi-com/docs/gmb/overseas.md](https://github.com/movinc/kutikomi-com/blob/main/docs/gmb/overseas.md)** を参照（データモデル / 中核5ファイル / 設定YAML / 方向別挙動 / 新国追加手順 / 参考PR）。
+詳細は **[kutikomi-com/docs/gmb/overseas.md](https://github.com/movinc/kutikomi-com/blob/main/docs/gmb/overseas.md)** を参照（データモデル / 中核ファイル / 設定YAML / 方向別挙動 / 新国追加手順 / 参考PR）。
 
 **即座に思い出したいときの要点**:
 - 中核ファイル: `app/models/store/address.rb` / `app/models/gmb/commands/stores/fetch_basic_information_command.rb` / `app/models/gmb/representations/base_representation.rb`
 - 設定: `config/settings/country_to_locale_mapping.yml` / `config/settings/locality_usable_country_list.yml`
-- 対応国: JP / US / TW / HK / KR
+- 対応国: JP / US / TW / HK / KR（+ TH 部分対応中）
 
 ### 2. Searches多言語 — データモデル
 
@@ -90,7 +85,7 @@ app/forms/biz/drafted_post/validators.rb
 
 - 過去PR: #15430 (認証情報エラーメール), #15517 (再認証動線), #18074 (sentry通知を止める), #19138 (エラーハンドリング)
 - **認証エラーはユーザーが自己解決できる動線**を優先（自動リトライしない）
-- Sentryノイズが多いエラー種別は、動線整備後に通知を止める判断をしていた
+- Sentryノイズが多いエラー種別は、動線整備後に通知を止める判断パターンがある
 
 ### 6. デモデータ — yaml駆動 + Builder群
 
@@ -116,7 +111,7 @@ app/models/company/ai_agent/                       # 集計ロジック（Active
 config/settings/accessible_apis.yml                # API単位のアクセス制御
 ```
 
-**主要API**（彼の担当）:
+**主要API**:
 
 | API | Controller | Model |
 |-----|-----------|-------|
@@ -137,8 +132,9 @@ config/settings/accessible_apis.yml                # API単位のアクセス制
 **思い出すための見出しだけ**:
 - `language_code` は住所同期と投稿で方針が逆（日本のみ vs 全国）
 - `region_code` は `.upcase` で正規化必須
-- `locality` はホワイトリストで4箇所判定
+- `locality` はホワイトリストで 5 箇所判定（serializer含む）
 - `zhtw`/`zhhk` は GBP API 仕様（`zh-TW`/`zh-HK`）に変換が必要
+- prefecture翻訳はGBPのreturn表記と完全一致（Hawaii→HI #19722）
 
 ### Searches多言語
 
@@ -225,10 +221,10 @@ config/settings/accessible_apis.yml                # API単位のアクセス制
 
 ---
 
-## Style / 判断の癖
+## 判断パターン（過去PRから抽出した設計の癖）
 
 - **設定駆動を好む**: YAMLに寄せる。`if country == "JP"` のようなハードコードを避ける
-- **受注前先行対応**: 新国は受注可能性が出た時点で準備（#18774 韓国）
+- **受注前先行対応**: 新国は受注可能性が出た時点で準備（例: #18774 韓国）
 - **バリデーションは両方の箇所に置く**: 投稿と下書きの両方、承認申請経由も忘れない
 - **CSV は洗い替え方式**: 差分更新でバグを生むより、一度全削除→再作成の方が堅実
 - **分析系は distinct を徹底**: `count`/`sum` 両方
@@ -239,7 +235,7 @@ config/settings/accessible_apis.yml                # API単位のアクセス制
 
 ## How to Use This Skill
 
-### モード1: 対話相談（「カシマさんならどう答える？」）
+### モード1: 対話相談
 
 ユーザーが次のように相談してきたら、このSkillを参照して回答する:
 
@@ -272,14 +268,14 @@ config/settings/accessible_apis.yml                # API単位のアクセス制
 ### モード3: 新人オンボーディング
 
 該当ドメインに初めて触る開発者には、このSkillの「ドメインマップ」と「Key Knowledge」を先に共有する。
-代表PR（表の一番右）を1つずつ読むと、彼の思考プロセスが理解できる。
+代表PR（表の一番右）を1つずつ読むと、設計判断の流れが理解できる。
 
 ---
 
 ## 参考PR一覧（領域別）
 
 ### GBP海外対応
-**[docs/gmb/overseas.md #参考PR](https://github.com/movinc/kutikomi-com/blob/main/docs/gmb/overseas.md#参考pr)** 参照（9件）。
+**[docs/gmb/overseas.md #参考PR](https://github.com/movinc/kutikomi-com/blob/main/docs/gmb/overseas.md#参考pr)** 参照（11件）。
 
 ### Searches多言語
 - movinc/kutikomi-com#13257 投稿APIにてSearches多言語投稿データを作成できるようにする
@@ -335,9 +331,7 @@ config/settings/accessible_apis.yml                # API単位のアクセス制
 
 ## Skillの更新方法
 
-本人が不在でもSkillを育てられるように:
-
-1. **新しいPR取得** (今後カシマさんのコードを触った人のPR):
+1. **新しい関連PRの取得**:
    ```bash
    gh pr list --search "<領域キーワード> in:title" --state merged --limit 20
    ```
@@ -345,7 +339,7 @@ config/settings/accessible_apis.yml                # API単位のアクセス制
 3. **設定ファイルの最新化**: `config/settings/*.yml` に新しい国が増えたら Domain Map を更新
 4. **誤りの訂正**: 実装が変わった箇所は **更新日付付きで上書き** する
 
-本Skillは「凍結されたドキュメント」ではなく「受け継いで育てるドキュメント」として扱ってください。
+本Skillは「凍結されたドキュメント」ではなく「育てるドキュメント」として扱ってください。
 
 将来チーム展開する場合は、このSkillを `~/.claude/skills/` から `kutikomi-com/.claude/skills/` に移動すると
 リポジトリ利用者全員で共有できます。
@@ -354,7 +348,5 @@ config/settings/accessible_apis.yml                # API単位のアクセス制
 
 ## Notes / 制約
 
-- 本Skillは彼のPRとコメントから推論した内容であり、本人の意図と完全一致するとは限らない
+- 本Skillは関連PRとコメントから推論した内容であり、設計時の意図と完全一致するとは限らない
 - 実装は日々変わるため、**Skillの記述と現コードが食い違う場合は現コードを信じる**（そしてSkillを更新する）
-- 「彼に直接聞けば済んだこと」を思い出す補助線として使う。完全な代替ではない
-- 退職前に彼本人にレビューしてもらうことを強く推奨（認識ズレの早期修正のため）
