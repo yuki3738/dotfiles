@@ -4,6 +4,17 @@
     "defaultMode": "auto"
   },
   "hooks": {
+    "UserPromptSubmit": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash $HOME/.claude/scripts/set-terminal-title.sh"
+          }
+        ]
+      }
+    ],
     "Stop": [
       {
         "matcher": "",
@@ -11,6 +22,10 @@
           {
             "type": "command",
             "command": "sh $HOME/.claude/hooks/notify-completion.sh"
+          },
+          {
+            "type": "command",
+            "command": "bash $HOME/.claude/scripts/set-terminal-title.sh"
           }
         ]
       }
