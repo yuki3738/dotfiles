@@ -84,6 +84,15 @@ MY_SETTINGS.md
 # Claude Devtools（別アプリ）のローカル設定。pinnedSessions 等マシン依存stateを含むため追跡しない
 claude-devtools-config.json
 
+# daemon・ジョブのランタイムステート
+.last-cleanup
+daemon-auth-cooldown
+daemon-auth-status.json
+daemon.lock
+daemon.status.json
+daemon/
+jobs/
+
 # ===========================================
 # 内部ディレクトリ
 # ===========================================
