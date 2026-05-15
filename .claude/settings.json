@@ -65,7 +65,8 @@
     "plugin-dev@claude-plugins-official": true,
     "claude-md-management@claude-plugins-official": true,
     "claude-code-setup@claude-plugins-official": true,
-    "cctop@cctop": true
+    "cctop@cctop": true,
+    "superpowers@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "openai-codex": {
