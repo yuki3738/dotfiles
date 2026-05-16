@@ -88,5 +88,6 @@
   "editorMode": "vim",
   "preferredNotifChannel": "iterm2",
   "agentPushNotifEnabled": true,
-  "skipAutoPermissionPrompt": true
+  "skipAutoPermissionPrompt": true,
+  "fastMode": true
 }
